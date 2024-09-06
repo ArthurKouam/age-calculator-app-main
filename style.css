@@ -71,3 +71,18 @@ input{
     padding-top: 10px;
     font-family: 'poppins-bolditalics', sans-serif;
 }
+
+@media (max-width: 600px) {
+    .element{
+        width: 90%;
+    }
+    input{
+        width: 70px;
+    }
+    .resultat{
+        font-size: 30px;
+    }
+    .arrow{
+        padding: 0;
+    }
+}
