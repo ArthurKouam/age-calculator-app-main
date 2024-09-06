@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  
+  <title>Frontend Mentor | Age calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+
+  <section class="container">
+    <div class="element">
+      <div class="inputDiv">
+        <div>
+          <span>DAY</span><br>
+          <input type="number" placeholder="DD" id="inputDay" min="1" max="31">
+        </div>
+        <div>
+          <span>MONTH</span><br>
+          <input type="number" placeholder="MM" id="inputMonth" min="1" max="12">
+        </div>
+        <div>
+          <span>YEAR</span><br>
+          <input type="number" placeholder="YYYY" id="inputYear">
+        </div>
+        <button class="arrow" onclick="calcul()"><img class="" src="assets/images/icon-arrow.svg" alt=""></button>
+      </div>
+      
+      <div class="resultat">
+        <span><span class="bluev" id="year">--</span> year</span><br>
+        <span><span class="bluev" id="month">--</span> month</span><br>
+        <span><span class="bluev" id="day">--</span> day</span><br>
+      </div>
+    </div>
+  </section>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+
+  <script defer>
+    function calcul() {
+      const year = parseInt(document.getElementById('inputYear').value);
+      const month = parseInt(document.getElementById('inputMonth').value) - 1;
+      const day = parseInt(document.getElementById('inputDay').value);
+
+      // Validate the date
+      const startDate = new Date(year, month, day);
+      if (startDate.getFullYear() !== year || startDate.getMonth() !== month || startDate.getDate() !== day) {
+        alert("Please enter a valid date.");
+        return;
+      }
+
+      const today = new Date();
+      let years = today.getFullYear() - startDate.getFullYear();
+      let months = today.getMonth() - startDate.getMonth();
+      let days = today.getDate() - startDate.getDate();
+
+      if (days < 0) {
+          months--;
+          const prevMonth = new Date(today.getFullYear(), today.getMonth() - 1, startDate.getDate());
+          days += new Date(prevMonth.getFullYear(), prevMonth.getMonth() + 1, 0).getDate();
+      }
+
+      if (months < 0) {
+          years--;
+          months += 12;
+      }
+
+      document.getElementById('year').innerText = years;
+      document.getElementById('month').innerText = months;
+      document.getElementById('day').innerText = days;
+    }
+  </script>
+</body>
+</html>
