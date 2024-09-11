@@ -22,7 +22,7 @@
     height: 100vh;
     display: grid;
     place-items: center;
-    background-color: rgb(199, 190, 190);
+    background-color: rgb(199, 190, 190, 1);
 }
 
 .element{
